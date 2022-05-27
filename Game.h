@@ -24,6 +24,7 @@ private:
 	Settings* m_settings;
 	RenderWindow m_win;
 	RectangleShape m_settingsButton;
+	bool m_done;
 
 	void restart();
 	void resize();
