@@ -1,19 +1,40 @@
 #include "Settings.h"
 
-Settings* Settings::settings = nullptr;
+Settings* Settings::m_settings = nullptr;
+Settings* Settings::m_defaults = nullptr;
 
-Settings::Settings()
+Settings::Settings(bool defaults)
 {
-	load();
+	if (!defaults)
+	{
+		load();
+	}
+	else
+	{
+		m_rows = 4;
+		m_cellSize = 100;
+		m_settingsButtonSize = 35;
+		m_backgroundColor = sf::Color(250, 220, 100);
+		m_cellColor = sf::Color::White;
+	}
 }
 
 Settings* Settings::getInstance()
 {
-	if (!settings)
+	if (!m_settings)
 	{
-		settings = new Settings;
+		m_settings = new Settings;
 	}
-	return settings;
+	return m_settings;
+}
+
+Settings* Settings::getDefaults()
+{
+	if (!m_defaults)
+	{
+		m_defaults = new Settings(true);
+	}
+	return m_defaults;
 }
 
 void Settings::setRows(int rows)
@@ -37,26 +58,31 @@ float Settings::getIndent() const
 
 void Settings::load()
 {
+	if (!m_defaults)
+	{
+		getDefaults();
+	}
+
 	std::ifstream ist{ "settings", std::ios_base::binary };
 	if (!ist.read(reinterpret_cast<char*>(&m_rows), sizeof(m_rows)))
 	{
-		m_rows = 4;
+		m_rows = m_defaults->m_rows;
 	}
 	if (!ist.read(reinterpret_cast<char*>(&m_cellSize), sizeof(m_cellSize)))
 	{
-		m_cellSize = 100;
+		m_cellSize = m_defaults->m_cellSize;
 	}
 	if (!ist.read(reinterpret_cast<char*>(&m_settingsButtonSize), sizeof(m_settingsButtonSize)))
 	{
-		m_settingsButtonSize = 35;
+		m_settingsButtonSize = m_defaults->m_settingsButtonSize;
 	}
 	if (!ist.read(reinterpret_cast<char*>(&m_backgroundColor), sizeof(m_backgroundColor)))
 	{
-		m_backgroundColor = sf::Color(250, 220, 100);
+		m_backgroundColor = m_defaults->m_backgroundColor;
 	}
 	if (!ist.read(reinterpret_cast<char*>(&m_cellColor), sizeof(m_cellColor)))
 	{
-		m_cellColor = sf::Color::White;
+		m_cellColor = m_defaults->m_cellColor;
 	}
 
 	save();

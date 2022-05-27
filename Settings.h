@@ -10,6 +10,7 @@ public:
 	Settings(Settings&) = delete;
 	void operator=(const Settings&) = delete;
 	static Settings* getInstance();
+	static Settings* getDefaults();
 
 	int getRows() const { return m_rows; }
 	void setRows(int rows);
@@ -25,8 +26,9 @@ public:
 	void load();
 	void save();
 private:
-	Settings();
-	static Settings* settings;
+	Settings(bool defaults = false);
+	static Settings* m_settings;
+	static Settings* m_defaults;
 
 	int m_rows;
 	unsigned int m_cellSize;

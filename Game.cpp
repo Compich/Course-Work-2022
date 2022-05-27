@@ -86,9 +86,11 @@ void Game::showImGui()
 	static int cellSize = m_settings->getCellSize();
 	static Clock imguiClock;
 	static ImVec4 backColor{ m_settings->getBackgroundColor().r / 255.0f, m_settings->getBackgroundColor().g / 255.0f, m_settings->getBackgroundColor().b / 255.0f, 1.0f };
-	static ImVec4 refBackColor{ 250.0f / 255.0f, 220.0f / 255.0f, 100.0f / 255.0f, 1.0f };
+	static Color clRefBackColor = Settings::getDefaults()->getBackgroundColor();
+	static ImVec4 refBackColor{ clRefBackColor.r / 255.0f, clRefBackColor.g / 255.0f, clRefBackColor.b / 255.0f, clRefBackColor.a / 255.0f };
 	static ImVec4 cellColor{ m_settings->getCellColor().r / 255.0f, m_settings->getCellColor().g / 255.0f, m_settings->getCellColor().b / 255.0f, 1.0f };
-	static ImVec4 refCellColor{ 1.0f, 1.0f, 1.0f, 1.0f };
+	static Color clRefCellColor = Settings::getDefaults()->getCellColor();
+	static ImVec4 refCellColor{ clRefCellColor.r / 255.0f, clRefCellColor.g / 255.0f, clRefCellColor.b / 255.0f, clRefCellColor.a / 255.0f };
 
 	ImGui::SFML::Update(m_win, imguiClock.restart());
 
