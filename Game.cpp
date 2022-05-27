@@ -186,6 +186,7 @@ void Game::restart()
 {
 	m_field = Field{ Vector2f{ m_settings->getIndent(), m_settings->getIndent() }, m_settings->getRows(), m_settings->getCellSize(), *m_font, m_settings->getCellColor() };
 	resize();
+	m_done = false;
 }
 
 void Game::resize()
@@ -227,7 +228,7 @@ void Game::pollEvents()
 						if (m_field.isCorrect() && !m_done)
 						{
 							m_done = true;
-							if (MessageBox(m_win.getSystemHandle(), L"Вітаю! Ви пройшли гру. Бажаєте перезапустити?", L"Кінець", MB_YESNO) == 6)
+							if (MessageBox(nullptr, L"Вітаю! Ви пройшли гру. Бажаєте перезапустити?", L"Кінець", MB_YESNO) == 6)
 							{
 								restart();
 							}
