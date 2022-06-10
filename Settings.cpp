@@ -64,23 +64,23 @@ void Settings::load()
 	}
 
 	std::ifstream ist{ "settings", std::ios_base::binary };
-	if (!ist.read(reinterpret_cast<char*>(&m_rows), sizeof(m_rows)))
+	if (!ist.read(reinterpret_cast<char*>(&m_rows), sizeof(m_rows)) || m_rows < 3 || 10 < m_rows)
 	{
 		m_rows = m_defaults->m_rows;
 	}
-	if (!ist.read(reinterpret_cast<char*>(&m_cellSize), sizeof(m_cellSize)))
+	if (!ist.read(reinterpret_cast<char*>(&m_cellSize), sizeof(m_cellSize)) || m_cellSize < 20 || 200 < m_cellSize)
 	{
 		m_cellSize = m_defaults->m_cellSize;
 	}
-	if (!ist.read(reinterpret_cast<char*>(&m_settingsButtonSize), sizeof(m_settingsButtonSize)))
+	if (!ist.read(reinterpret_cast<char*>(&m_settingsButtonSize), sizeof(m_settingsButtonSize)) || m_settingsButtonSize < 20 || 50 < m_settingsButtonSize)
 	{
 		m_settingsButtonSize = m_defaults->m_settingsButtonSize;
 	}
-	if (!ist.read(reinterpret_cast<char*>(&m_backgroundColor), sizeof(m_backgroundColor)))
+	if (!ist.read(reinterpret_cast<char*>(&m_backgroundColor), sizeof(m_backgroundColor)) || m_backgroundColor.a != 255)
 	{
 		m_backgroundColor = m_defaults->m_backgroundColor;
 	}
-	if (!ist.read(reinterpret_cast<char*>(&m_cellColor), sizeof(m_cellColor)))
+	if (!ist.read(reinterpret_cast<char*>(&m_cellColor), sizeof(m_cellColor)) || m_cellColor.a != 255)
 	{
 		m_cellColor = m_defaults->m_cellColor;
 	}

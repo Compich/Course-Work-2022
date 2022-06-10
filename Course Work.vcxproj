@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="Equal.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="imgui-master\imgui-SFML.cpp" />
@@ -157,14 +158,19 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="resourceLoading.cpp" />
     <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="Solver.cpp" />
+    <ClCompile Include="Statespace.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="Equal.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resourceLoading.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="Solver.h" />
+    <ClInclude Include="Statespace.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Course Work.rc" />
